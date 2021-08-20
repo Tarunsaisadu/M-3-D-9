@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- Bootstrap CSS -->
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
+
+        
+    <title>Netflix</title>
+    <style>
+      body, nav {
+        background-color: #221f1f;
+      }
+      .mybutton{
+        background-color: #221f1f;
+        border-color: #221f1f;
+        color:#808080;
+      }
+      .serviceButton{
+        background-color: #221f1f;
+        border-color: grey;
+        color:#808080;
+      }
+      a {
+        color: grey;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+        color: grey;
+      }
+      .container , .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+        padding-right: 40px;
+        padding-left: 40px;
+      }
+    </style>
+  </head>
+  <body>
+
+
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <div class="container-fluid">
+
+        <!-- Netflix Logo -->
+        <a class="navbar-brand" href="#">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" 
+          style="width: 100px; height: 55px;" alt="Netflix logo"/>
+        </a>
+
+       <!-- Navbar Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      
+
+        <!-- Navbar Links  -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/netflixhome.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tv Shows</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Movies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Recently Added</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">My List</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Back Office</a>
+            </li>
+          </ul>
+          
+          <!-- Navbar Right-Side icons -->
+  
+          <form class="form-inline my-2 my-lg-0 ">
+            <input class="form-control mr-sm-2 d-none" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-dark text-light my-2 my-sm-0" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg></button>
+          </form>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"><img src="assets/kids_icon.png" width="40" height="auto" alt=""></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill text-light mt-2" viewBox="0 0 16 16">
+              <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+              </svg></a>
+            </li>
+            <li class="nav-item dropdown mr-auto">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="assets/avatar.png" width="40" height="auto" alt="">
+                  </a>
+                  <ul class="dropdown-menu"
+                  aria-labelledby="navbarDropdown">
+                  
+                    <li><a class="dropdown-item" href="netflixhome.html">Home</a></li>
+                    <li><a class="dropdown-item" href="netflixprofile.html">Profile</a></li>
+                    <li><a class="dropdown-item" href="netflixsettings.html">Settings</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                  </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <form onsubmit="handleSubmit(event)">
+              <div class="form-group">
+                <label for="name">Movie name</label>
+                <input
+                  id="name"
+                  type="text"
+                  class="form-control"
+                  placeholder="movie name..."
+                />
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <input
+                  id="description"
+                  type="text"
+                  class="form-control"
+                  placeholder="description.."
+                />
+              </div>
+              <div class="form-group">
+                <label for="category">category</label>
+                <input
+                  id="category"
+                  type="text"
+                  class="form-control"
+                  placeholder="category.."
+                />
+              </div>
+              <div class="form-group">
+                <label for="imageUrl">imageUrl</label>
+                <input
+                  id="imageUrl"
+                  type="url"
+                  class="form-control"
+                  placeholder="paste url here"
+                />
+              </div>
+             
+              <button type="submit" class="btn btn-primary">Submit</button>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+
+       <script>
+           const handleSubmit = async (event) => {
+        event.preventDefault();
+         console.log("This will work");
+           
+        const url = "https://striveschool-api.herokuapp.com/api/movies";
+
+            const list = {
+          name: document.getElementById("name").value,
+          description: document.getElementById("description").value,
+          category: document.getElementById("category").value,
+          imageUrl: document.getElementById("imageUrl").value,
+          
+        };
+        console.log(list);
+    
+    try {
+          const response = await fetch(url, {
+            method: "POST",
+            body: JSON.stringify(list),
+            headers: {
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTFjZjk1NjJkNTI2MjAwMTViNmRjOWMiLCJpYXQiOjE2Mjk0NTMxMTUsImV4cCI6MTYzMDY2MjcxNX0.7V8_dewBdGmkZoXKl-w8OBezi8yBMrsuLH4wIJ-Gn9w",
+
+              "Content-Type": "application/json",
+            },
+          });
+          if (response.ok) {
+            const respEvent = await response.json();
+            alert("Movies added to list");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+    }
+
+
+       
+       </script>
+  </body>

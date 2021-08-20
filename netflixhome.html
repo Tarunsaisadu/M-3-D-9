@@ -65,7 +65,7 @@
 
         <!-- Navbar Links  -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="#">Home</a>
             </li>
             <li class="nav-item">
@@ -79,6 +79,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">My List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/backoffice.html">Back Office</a>
             </li>
           </ul>
           
@@ -124,33 +127,46 @@
 
 
     <!--Starting the movies-->
-    <div class ="container-fluid ">
+    <div class ="container-fluid fetchContainer">
       <div class="d-flex w-100 align-items-center text-white my-4">
-      <h2 style="width:10%" class="text-white my-3">TV Shows</h2>
-      <div class="flex" style="width:85%">
+      <div><h2 style="width:10%" class="text-white my-3">Action</h2>
+      <div id="currentitems">
+
+      </div>
+    </div>  
+  </div>
+
+        
+       
      <!--Generes Dropdown-->   
-        <div class="dropdown me-auto mb-2 mb-lg-0">
-          <button 
-          class="btn dropdown-toggle rounded-0 text-white border-white" 
-          type="button" id="dropdownMenuButton1" 
-          data-bs-toggle="dropdown" 
-          aria-expanded="false"
-          style="background-color: black;">
-            Genere
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Horror</a></li>
-            <li><a class="dropdown-item" href="#">Comedy</a></li>
-          </ul>
-        </div>
+       
 
      <!--Filters and Layout-->  
-
-      </div>  
+    
+    
+      <div class="d-flex w-100 align-items-center text-white my-5">
+      <div><h2 style="width:10%" class="text-white my-3">Thriller</h2>
+      <div id="currentitems2">
+      </div>
+    </div>  
+  </div>
+ 
+    <div class="d-flex w-100 align-items-center text-white my-6">
+    <div><h2 style="width:10%" class="text-white my-3">Drama</h2>
+    <div id="currentitems3">
     </div>
+  </div>  
+</div>
 
-    <!-- TRENDING NOW -->
+  <div class="d-flex w-100 align-items-center text-white my-7">
+  <div><h2 style="width:10%" class="text-white my-3">Horror</h2>
+  <div id="currentitems4">
+  </div>
+</div>  
+</div>
+
+
+    <!-- TRENDING NOW
       <h4 class="text-white mb-2 mt-5 ">Trending Now</h4>
       <div class="row no-gutters text-center">
       <div class="col col-12 col-md-6 col-lg-2 px-1 mb-1">
@@ -197,8 +213,8 @@
       </div>
       </div>
 
-       <!-- WATCH IT AGAIN -->
-       <h4 class="text-white mb-2 mt-4">Watch It Again</h4>
+       WATCH IT AGAIN -->
+       <!-- <h4 class="text-white mb-2 mt-4">Watch It Again</h4>
        <div class="row no-gutters text-center">
        <div class="col col-12 col-md-6 col-lg-2 px-1 mb-1">
            <img 
@@ -242,10 +258,10 @@
            style="width: 300px; height: 160px;" 
            alt="movie column">
        </div>
-       </div>
+       </div> -->
 
       <!-- NEW RELEASES -->
-       <h4 class="text-white mb-2 mt-4">New Releases</h4>
+       <!-- <h4 class="text-white mb-2 mt-4">New Releases</h4>
        <div class="row no-gutters text-center">
        <div class="col col-12 col-md-6 col-lg-2 px-1 mb-1">
            <img 
@@ -290,12 +306,12 @@
            alt="movie column">
        </div>
        </div>
-    </div>
+    </div> --> 
 
-    <footer>
+    <!-- <footer>
       <div class="container-fluid">
-        <!-- FOOTER ICONS-->
-        <div class="row mt-5">
+         FOOTER ICONS-->
+        <!-- <div class="row mt-5">
           <div class="col-6 offset-3">
             <button type="button" class="mybutton btn btn-secondary">
               
@@ -357,9 +373,9 @@
               </svg>
             </button>
           </div>
-        </div>
+        </div> -->
         <!-- FOOTER LINKS-->
-        <div class="row col-6 offset-3" style="font-size: 14px;">
+        <!-- <div class="row col-6 offset-3" style="font-size: 14px;">
 
           <div class="col-6 col-sm-3 col-md-4 col-lg-3">
             <span><a href="">Audio and Subtitles</a></span>
@@ -411,11 +427,71 @@
           </div>
         </div>
       </div>
-    </footer>
+    </footer> --> -->
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
+
+    <script>
+      const getData = async (url) => {
+        try {
+          const response = await fetch(url, {
+            method: "GET",
+
+            headers: {
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTFjZjk1NjJkNTI2MjAwMTViNmRjOWMiLCJpYXQiOjE2Mjk0NTMxMTUsImV4cCI6MTYzMDY2MjcxNX0.7V8_dewBdGmkZoXKl-w8OBezi8yBMrsuLH4wIJ-Gn9w",
+
+              "Content-Type": "application/json",
+            },
+          });
+
+          // if (!response.ok) { throw new Error("there was an issue with the fetch") }
+
+          const lists = await response.json();
+
+          return lists;
+        } catch (err) {
+          console.log("this error was handled", err);
+        } finally {
+          console.log("I'm the last thing");
+        }
+      };
+      // displaying the movies list
+      const displayMovies = (lists) => {
+        // DOM MANIPULATION
+        
+
+        if (lists) {
+          lists.forEach((list) => {
+            let an = document.createElement("a");
+            let img = document.createElement("img")
+            img.classList.add(
+              "heroimg",);
+            
+        img.src = `${list.imageUrl}`;
+        let src = document.getElementById("currentitems");
+        
+        an.appendChild(img);
+        src.appendChild(an);
+        an.setAttribute("href","./details.html?id=${list._id}")
+
+          
+          });
+        }
+      };
+        
+      window.onload = async () => {
+        const url = "https://striveschool-api.herokuapp.com/api/movies/drama";
+
+        const movies = await getData(url);
+
+        displayMovies(movies);
+
+        console.log(movies);
+      };
+    </script>
   </body>
 
 

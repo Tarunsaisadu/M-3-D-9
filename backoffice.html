@@ -166,8 +166,8 @@
                 />
               </div>
              
-              <button type="submit" class="btn btn-primary">Submit</button>
-              
+              <button type="submit" class="btn btn-outline-danger">Submit</button>
+              <button class="btn btn-danger" onclick="handleDelete()">Delete</button>
             </form>
           </div>
         </div>
@@ -208,7 +208,46 @@
           console.log(err);
         }
     }
+   
+        const handleDelete = async () => {
 
+          const list = {
+          name: document.getElementById("name").value,
+          description: document.getElementById("description").value,
+          category: document.getElementById("category").value,
+          imageUrl: document.getElementById("imageUrl").value,
+          
+        };
+          
+            try {
+              const url = " https://striveschool-api.herokuapp.com/api/movies";
+              
+  
+                const response = await fetch(url,{
+            method: "DELETE",
+
+            headers: {
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTFjZjk1NjJkNTI2MjAwMTViNmRjOWMiLCJpYXQiOjE2Mjk0NTMxMTUsImV4cCI6MTYzMDY2MjcxNX0.7V8_dewBdGmkZoXKl-w8OBezi8yBMrsuLH4wIJ-Gn9w",
+
+              "Content-Type": "application/json",
+            }
+            ,    body: JSON.stringify(list)
+          })
+
+
+
+                if (response.ok) {
+                    const deletedObj = await response.json()
+                    alert("success") 
+                     setTimeout(() => { window.location.assign("netflixhome.html") }, 3500) 
+                } else {
+                    alert("could not delete")
+                }
+            } catch (err) {
+                console.log(err)
+            }
+          }
 
        
        </script>

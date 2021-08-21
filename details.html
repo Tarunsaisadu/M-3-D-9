@@ -152,13 +152,17 @@
       crossorigin="anonymous"
     ></script>
       <script>
-        const moviesId = new URLSearchParams(window.location.search).get("id");
+         
+        const mId = new URLSearchParams(window.location.search).get("id");
+          
+          const moviesId= mId.toString()
+          console.log(moviesId)
   
         window.onload = async () => {
           try {
             const url = " https://striveschool-api.herokuapp.com/api/movies/drama";
   
-            const response = await fetch(url + moviesId, {
+            const response = await fetch(url, {
               method: "GET",
               headers: {
                 Authorization:
@@ -169,13 +173,18 @@
               const movieData = await response.json();
   
               console.log(movieData);
-  
+              let res = movieData.filter(idMovie=>{
+                 if(idMovie._id===moviesId){
+                   return idMovie;
+                 }
+              })
+               console.log(res)
               const movieContainer = document.getElementById("moviesDetails");
   
-              movieContainer.innerHTML = `<h6 ">Name:${movieData.name}</h6>
-                            <h3">description:${movieData.description}</h3>
-                            <p> genre :${movieData.category}</p>
-                            <img>src="${movieData.imageUrl}"</p>`;
+              movieContainer.innerHTML = `<h6 id="name" value=${res[0].name}>Name:${res[0].name}</h6>
+                            <h3" id="description" value=${res[0].description}>description:${res[0].description}</h3>
+                            <p id="category" value=${res[0].category}> genre :${res[0].category}</p>
+                            <img id="imageUrl" value=${res[0].imageUrl}>src="${res[0].imageUrl}"</p>`;
             }
           } catch (err) {
             console.log(err);
@@ -186,23 +195,37 @@
           window.location.assign("./backoffice.html?id=" + moviesId);
         };
         const handleDelete = async () => {
+
+          const list = {
+          name: document.getElementById("name").value,
+          description: document.getElementById("description").value,
+          category: document.getElementById("category").value,
+          imageUrl: document.getElementById("imageUrl").value,
+          
+        };
+          
             try {
               const url = " https://striveschool-api.herokuapp.com/api/movies/drama";
               
   
                 const response = await fetch(url,{
-            method: "GET",
+            method: "DELETE",
 
             headers: {
               Authorization:
                 "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTFjZjk1NjJkNTI2MjAwMTViNmRjOWMiLCJpYXQiOjE2Mjk0NTMxMTUsImV4cCI6MTYzMDY2MjcxNX0.7V8_dewBdGmkZoXKl-w8OBezi8yBMrsuLH4wIJ-Gn9w",
 
               "Content-Type": "application/json",
-            },})
+            }
+            ,    body: JSON.stringify(list)
+          })
+
+
+
                 if (response.ok) {
                     const deletedObj = await response.json()
-                    alert("success", "movie with id: " + deletedObj._id + " deleted successfully") 
-                    setTimeout(() => { window.location.assign("/") }, 3500) 
+                    alert("success") 
+                     setTimeout(() => { window.location.assign("netflixhome.html") }, 3500) 
                 } else {
                     alert("could not delete")
                 }
